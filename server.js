@@ -24,7 +24,7 @@ app.use(express.static('website'));
 
 // Spin up the server
 // Callback to debug
-const port = process.env.DEPLOY_PRIME_URL || 8080;
+const port = 8080;
 app.listen(port, () => {
   console.log(`Running in localhost:${port}`)
 })
