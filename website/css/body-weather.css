@@ -1,0 +1,22 @@
+.weather-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#temp {
+  margin-top: 0.1em;
+  font-size: 3em;
+}
+
+#city {
+  padding-top: 1em;
+}
+
+#content {
+  padding-top: 1em;
+}
+
+#weather-icon {
+  margin-top: 0.5em;
+}
