@@ -1,4 +1,6 @@
 "use strict";
+const fetch = require('node-fetch');
+const dotenv = require('dotenv').config();
 // Setup empty JS object to act as endpoint for all routes
 let projectData = {};
 // Express to run server and routes
@@ -24,9 +26,18 @@ app.use(express.static('website'));
 
 // Spin up the server
 // Callback to debug
-const port = 8080;
+const port = process.env.PORT || 8080;
 app.listen(port, () => {
   console.log(`Running in localhost:${port}`)
+})
+
+// 
+app.post('/getWeather', async(req, res) => {
+  const {url} = req.body;
+  const response =  await fetch(`${url}${process.env.API_KEY}&units=metric`);
+  const data = await response.json();
+
+  res.send(data);
 })
 
 // Callback function to complete GET '/all'
