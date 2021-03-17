@@ -1,5 +1,3 @@
-// Personal API Key for OpenWeatherMap API
-const apiKey = '&appid=146c91286261b417e8d65526dde7d740';
 // Base URL for OpenWeatherMap API
 const baseUrl = 'http://api.openweathermap.org/data/2.5/weather?zip=';
 
@@ -32,7 +30,7 @@ function getWeatherEvent(event) {
   if (zipCode.value && feelings.value) {
     screenMessage.innerText = '';
 
-    getWeatherByZipCode(baseUrl, zipCode.value, apiKey)
+    getWeatherByZipCode(baseUrl, zipCode.value)
     .then(data => postWeatherData('/save', data))
     .then(() => updateUi())
     .catch(() => {
@@ -46,9 +44,19 @@ function getWeatherEvent(event) {
 }
 
 /* Function to GET Web API Data*/
-const getWeatherByZipCode = async (baseUrl, zipCode, apiKey) => {
-  const url = `${baseUrl}${zipCode}${apiKey}&units=metric`;
-  const dataWeather = await fetch(url);
+const getWeatherByZipCode = async (baseUrl, zipCode) => {
+  const urldata = {
+    url: `${baseUrl}${zipCode}`,
+  };
+
+  const dataWeather = await fetch('/getWeather', {
+    method: 'POST',
+    credentials: 'same-origin',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(urldata)
+  });
 
   try {
     const data = await dataWeather.json();
