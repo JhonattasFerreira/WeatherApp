@@ -1,6 +1,8 @@
 # Simple Weather App
 A simple application that searches for the temperature of a place based on zipcode.
-Works only for US zipcode. [Demo:](https://climazinho.herokuapp.com/)
+Works only for US zipcode. 
+
+[Demo](https://climazinho.herokuapp.com/)
 
 ## Getting Started
 To install the application it is necessary to have the Node installed on your machine.
